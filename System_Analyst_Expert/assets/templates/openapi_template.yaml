@@ -1,0 +1,471 @@
+openapi: 3.0.3
+info:
+  title: [API Name]
+  description: |
+    [Detailed description of the API]
+    
+    ## Authentication
+    This API uses Bearer token authentication. Include the token in the Authorization header:
+    ```
+    Authorization: Bearer <your-token>
+    ```
+    
+    ## Rate Limiting
+    - Rate limit: 100 requests per minute per API key
+    - Rate limit headers returned in response
+    
+    ## Errors
+    Standard HTTP status codes are used. Error responses follow this format:
+    ```json
+    {
+      "error": {
+        "code": "error_code",
+        "message": "Human-readable message",
+        "details": {}
+      }
+    }
+    ```
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: api-support@example.com
+    url: https://docs.example.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.example.com/v1
+    description: Production
+  - url: https://api-staging.example.com/v1
+    description: Staging
+  - url: http://localhost:3000/v1
+    description: Local development
+
+tags:
+  - name: users
+    description: User management operations
+  - name: products
+    description: Product catalog operations
+  - name: orders
+    description: Order management
+
+paths:
+  /users:
+    get:
+      tags:
+        - users
+      summary: List all users
+      description: Returns a paginated list of users
+      operationId: listUsers
+      parameters:
+        - name: page
+          in: query
+          description: Page number (1-indexed)
+          required: false
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+        - name: limit
+          in: query
+          description: Number of items per page
+          required: false
+          schema:
+            type: integer
+            default: 20
+            minimum: 1
+            maximum: 100
+        - name: sort
+          in: query
+          description: Sort field and order
+          required: false
+          schema:
+            type: string
+            enum: [created_at:asc, created_at:desc, email:asc, email:desc]
+            default: created_at:desc
+      responses:
+        '200':
+          description: Successful response
+          headers:
+            X-Total-Count:
+              description: Total number of users
+              schema:
+                type: integer
+            X-Page:
+              description: Current page number
+              schema:
+                type: integer
+            X-Per-Page:
+              description: Items per page
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                data:
+                  - id: "123e4567-e89b-12d3-a456-426614174000"
+                    email: "john.doe@example.com"
+                    name: "John Doe"
+                    created_at: "2024-01-15T10:30:00Z"
+                pagination:
+                  page: 1
+                  per_page: 20
+                  total: 150
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - BearerAuth: []
+    
+    post:
+      tags:
+        - users
+      summary: Create a new user
+      description: Creates a new user account
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+            example:
+              email: "jane.doe@example.com"
+              name: "Jane Doe"
+              password: "SecurePass123!"
+      responses:
+        '201':
+          description: User created successfully
+          headers:
+            Location:
+              description: URL of the created user
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              example:
+                id: "123e4567-e89b-12d3-a456-426614174001"
+                email: "jane.doe@example.com"
+                name: "Jane Doe"
+                created_at: "2024-01-15T11:00:00Z"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          description: Conflict - User already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error:
+                  code: "user_already_exists"
+                  message: "A user with this email already exists"
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - BearerAuth: []
+
+  /users/{userId}:
+    get:
+      tags:
+        - users
+      summary: Get user by ID
+      description: Returns a single user
+      operationId: getUserById
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: User ID (UUID format)
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - BearerAuth: []
+    
+    put:
+      tags:
+        - users
+      summary: Update user
+      description: Updates an existing user
+      operationId: updateUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - BearerAuth: []
+    
+    delete:
+      tags:
+        - users
+      summary: Delete user
+      description: Deletes a user account
+      operationId: deleteUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: User deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - BearerAuth: []
+
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - email
+        - name
+        - created_at
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique user identifier
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        email:
+          type: string
+          format: email
+          description: User email address
+          example: "user@example.com"
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+          description: User full name
+          example: "John Doe"
+        created_at:
+          type: string
+          format: date-time
+          description: Account creation timestamp
+          example: "2024-01-15T10:30:00Z"
+        updated_at:
+          type: string
+          format: date-time
+          description: Last update timestamp
+          example: "2024-01-16T14:20:00Z"
+    
+    CreateUserRequest:
+      type: object
+      required:
+        - email
+        - name
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          example: "newuser@example.com"
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+          example: "New User"
+        password:
+          type: string
+          format: password
+          minLength: 8
+          description: Minimum 8 characters, must include uppercase, lowercase, and number
+          example: "SecurePass123!"
+    
+    UpdateUserRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+          example: "Updated Name"
+        email:
+          type: string
+          format: email
+          example: "updated@example.com"
+    
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          example: 1
+        per_page:
+          type: integer
+          example: 20
+        total:
+          type: integer
+          example: 150
+        total_pages:
+          type: integer
+          example: 8
+    
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          required:
+            - code
+            - message
+          properties:
+            code:
+              type: string
+              description: Error code for programmatic handling
+              example: "validation_error"
+            message:
+              type: string
+              description: Human-readable error message
+              example: "The email field is required"
+            details:
+              type: object
+              description: Additional error details
+              additionalProperties: true
+              example:
+                field: "email"
+                constraint: "required"
+  
+  responses:
+    BadRequest:
+      description: Bad Request - Invalid input
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: "validation_error"
+              message: "Invalid request parameters"
+              details:
+                email: "Invalid email format"
+    
+    Unauthorized:
+      description: Unauthorized - Missing or invalid authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: "unauthorized"
+              message: "Authentication required"
+    
+    NotFound:
+      description: Not Found - Resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: "not_found"
+              message: "User not found"
+    
+    RateLimitExceeded:
+      description: Too Many Requests - Rate limit exceeded
+      headers:
+        X-RateLimit-Limit:
+          description: Request limit per time window
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          description: Requests remaining in current window
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          description: Time when rate limit resets (Unix timestamp)
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: "rate_limit_exceeded"
+              message: "Too many requests. Please try again later."
+    
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: "internal_error"
+              message: "An unexpected error occurred"
+  
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        JWT token obtained from /auth/login endpoint.
+        
+        Include in request header:
+        ```
+        Authorization: Bearer <your-jwt-token>
+        ```
+
+security:
+  - BearerAuth: []
