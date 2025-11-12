@@ -14,7 +14,7 @@ A curated collection of specialized skills that transform Claude from a general-
 | **Web_Architect_Pro** | ✅ Complete | 46 | Full-stack web development (React, Next.js, Laravel, FastAPI) |
 | **AI_Engineer_Pro** | ✅ Complete | 26 | AI/ML training, CV, NLP, deployment, vector databases |
 | **Mobile_Architect_Pro** | ⏳ Planned | ~20 | Flutter, Kotlin, mobile architecture patterns |
-| **ML_Systems_Pro** | ⏳ Planned | ~15 | Multi-modal ML, similarity engines, production MLOps |
+| **ML_Systems_Pro** | ✅ Complete | 15 | Multi-modal ML, similarity engines, production MLOps |
 | **DevOps_Master** | ⏳ Planned | ~20 | Docker, Kubernetes, CI/CD, infrastructure as code |
 | **System_Analyst_Expert** | ✅ Complete | 18 | Requirements, FSD, documentation, validation |
 
