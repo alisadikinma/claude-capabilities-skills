@@ -240,8 +240,9 @@ MIT License - See LICENSE file for details
 ## 👤 Author
 
 **Ali Sadikin MA**
-- Head of Digital Transformation @ PT Sat Nusapersada Tbk
-- AI Generalist • 16+ years experience
+- UN-UNCTAD Alibaba Fellow | Google Certified PM | AI Project Manager
+- AI Generalist • 17+ years experience
+- Portfolio: www.alisadikinma.com
 - Location: Batam, Indonesia
 
 ---
