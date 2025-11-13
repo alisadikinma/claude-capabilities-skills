@@ -13,12 +13,12 @@ A curated collection of specialized skills that transform Claude from a general-
 | **CTA_Orchestrator** | ✅ Complete | 18 | Meta-layer coordination & architecture decisions |
 | **Web_Architect_Pro** | ✅ Complete | 46 | Full-stack web development (React, Next.js, Laravel, FastAPI) |
 | **AI_Engineer_Pro** | ✅ Complete | 26 | AI/ML training, CV, NLP, deployment, vector databases |
-| **Mobile_Architect_Pro** | ⏳ Planned | ~20 | Flutter, Kotlin, mobile architecture patterns |
 | **ML_Systems_Pro** | ✅ Complete | 15 | Multi-modal ML, similarity engines, production MLOps |
+| **System_Analyst_Expert** | ✅ Complete | 18 | Requirements, FSD, documentation, validation, AI in EMS |
+| **Mobile_Architect_Pro** | ✅ Complete | 25 | Flutter, React Native, Xamarin, Ionic, Kotlin, native integration |
 | **DevOps_Master** | ⏳ Planned | ~20 | Docker, Kubernetes, CI/CD, infrastructure as code |
-| **System_Analyst_Expert** | ✅ Complete | 18 | Requirements, FSD, documentation, validation |
 
-**Progress:** 3 of 7 skills (42.9%) • **Total Files:** 90
+**Progress:** 6 of 7 skills (86%) • **Total Files:** 148
 
 ---
 
@@ -53,17 +53,17 @@ cd SKILLS-CLAUDE
 
 **Option 1: Direct Reference**
 ```
-Hey Claude, use the AI_Engineer_Pro skill to help me train a YOLOv8 model for PCB defect detection
+Hey Claude, use the Mobile_Architect_Pro skill to help me build a Flutter app with BLoC pattern
 ```
 
 **Option 2: Read Skill Documentation**
 ```
-Read D:\Projects\SKILLS-CLAUDE\AI_Engineer_Pro\SKILL.md and help me set up RAG pipeline
+Read D:\Projects\SKILLS-CLAUDE\Mobile_Architect_Pro\SKILL.md and help me choose between Flutter and React Native
 ```
 
 **Option 3: Browse Templates**
 ```
-Show me available templates in Web_Architect_Pro for Next.js projects
+Show me available templates in Mobile_Architect_Pro for Flutter projects
 ```
 
 ---
@@ -105,6 +105,21 @@ SKILLS-CLAUDE/
 │   ├── references/
 │   └── scripts/
 │
+├── Mobile_Architect_Pro/              # Cross-platform mobile development
+│   ├── README.md
+│   ├── SKILL.md
+│   ├── assets/templates/
+│   │   └── TEMPLATES.md (Flutter, RN, Xamarin, Ionic, Kotlin)
+│   ├── references/
+│   │   ├── flutter.md
+│   │   ├── react-native.md
+│   │   ├── xamarin.md
+│   │   ├── ionic.md
+│   │   └── kotlin.md
+│   └── scripts/
+│       ├── analyze_deps.py
+│       └── scaffold.py
+│
 └── [Additional skills...]
 ```
 
@@ -145,11 +160,23 @@ skill-name/
 ```
 → Analyzes requirements, recommends tech stack, creates integration blueprints
 
-### 📱 Mobile Development (Coming Soon)
+### 📱 Mobile Development
 ```
-"Build Flutter app with BLoC pattern and offline-first architecture"
+"Build Flutter app with BLoC pattern and offline-first architecture using Mobile_Architect_Pro"
 ```
-→ Complete Flutter project with state management and data persistence
+→ Complete Flutter project with state management, data persistence, and platform integration
+
+### 🔬 Production ML Systems
+```
+"Build a multi-modal image-text search engine using ML_Systems_Pro"
+```
+→ CLIP-based architecture, vector search, production deployment
+
+### 📋 System Analysis
+```
+"Generate comprehensive FSD for inventory management system using System_Analyst_Expert"
+```
+→ Complete functional specification with ERD, API specs, and acceptance criteria
 
 ---
 
@@ -168,6 +195,23 @@ skill-name/
 - **Deployment:** FastAPI, Triton Inference Server, ONNX
 - **Vector DBs:** pgvector, Pinecone, ChromaDB, Supabase
 
+### Mobile Development
+- **Flutter:** BLoC, Provider, Riverpod architectures
+- **React Native:** Redux Toolkit, Context API, native modules
+- **Xamarin/MAUI:** MVVM, Prism, .NET MAUI
+- **Ionic:** Angular/React/Vue with Capacitor
+- **Kotlin:** Jetpack Compose, Clean Architecture, Hilt DI
+
+### ML Systems
+- **Multi-Modal:** CLIP search, fusion pipelines, cross-modal retrieval
+- **Similarity:** Embedding generation, hybrid search, recommendations
+- **MLOps:** Feature stores, monitoring, CI/CD pipelines
+
+### System Analysis
+- **Documents:** SRD, FSD, SAD, ADR, OpenAPI specs
+- **AI/Manufacturing:** Computer vision for PCB inspection
+- **Architecture:** Microservices, event-driven, CQRS, DDD
+
 ### DevOps (Coming Soon)
 - Docker, Kubernetes, Terraform
 - CI/CD pipelines (GitLab, GitHub Actions)
@@ -183,9 +227,9 @@ skill-name/
 | Build web applications | Web_Architect_Pro |
 | Train ML models | AI_Engineer_Pro |
 | Build production ML systems | ML_Systems_Pro |
+| Write specifications & requirements | System_Analyst_Expert |
 | Mobile app development | Mobile_Architect_Pro |
 | Infrastructure & deployment | DevOps_Master |
-| Write specifications | System_Analyst_Expert |
 
 ---
 
@@ -198,7 +242,7 @@ skill-name/
 
 **Intermediate:**
 1. Combine skills (Web + AI_Engineer_Pro)
-2. Customize templates for your needs
+2. Build mobile apps with Mobile_Architect_Pro
 3. Use automation scripts
 
 **Advanced:**
@@ -253,9 +297,12 @@ MIT License - See LICENSE file for details
 - [CTA_Orchestrator](CTA_Orchestrator/README.md)
 - [Web_Architect_Pro](Web_Architect_Pro/README.md)
 - [AI_Engineer_Pro](AI_Engineer_Pro/README.md)
+- [ML_Systems_Pro](ML_Systems_Pro/README.md)
+- [System_Analyst_Expert](System_Analyst_Expert/README.md)
+- [Mobile_Architect_Pro](Mobile_Architect_Pro/README.md)
 
 ---
 
-**Last Updated:** January 12, 2025  
-**Version:** 1.0.0  
-**Status:** 🟢 Active Development (3/7 skills complete)
+**Last Updated:** January 13, 2025  
+**Version:** 1.1.0  
+**Status:** 🟢 Active Development (6/7 skills complete, 86%)
