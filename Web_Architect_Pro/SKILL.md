@@ -1,6 +1,10 @@
 ---
 name: web-architect-pro
-description: Complete full-stack web development skill with 46 production-ready templates. Covers frontend frameworks, backend frameworks, databases, API patterns, infrastructure tools, testing suites, and security best practices for building modern web applications.
+description: |
+  Next.js React Vue.js Laravel FastAPI Django web application development full-stack. Frontend backend API database PostgreSQL MongoDB Express NestJS web architecture.
+  Use when: building web app, creating Next.js project, React application, Vue project, Laravel API, FastAPI backend, Django REST, full-stack development, SSR SSG SPA,
+  API design, REST GraphQL, database schema, Prisma TypeORM, authentication JWT, web performance, SEO optimization, responsive web, Tailwind CSS, web deployment,
+  Vercel Netlify hosting, web testing, CI/CD pipeline, web best practices.
 ---
 
 # Web Architect Pro

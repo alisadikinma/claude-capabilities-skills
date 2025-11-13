@@ -1,7 +1,7 @@
 ---
 name: ml-systems-pro
 description: |
-  Production-grade ML systems engineering for multi-modal models, similarity engines, and MLOps pipelines. Use when Claude needs to work with: (1) Multi-modal ML systems (CLIP, BLIP, image+text fusion, audio-video models, cross-modal retrieval), (2) Similarity search engines (embedding systems, vector similarity, hybrid search, recommendation engines), (3) Production MLOps (feature stores, model monitoring, CI/CD pipelines, A/B testing, drift detection), (4) Large-scale ML infrastructure (distributed training, model serving at scale, caching strategies), (5) Real-time inference systems (latency optimization, batch processing, streaming ML)
+  Production ML systems multi-modal CLIP similarity search MLOps feature store monitoring. Image-text fusion recommendation engine vector database hybrid search A/B testing. Use when: building ML system, similarity search engine, recommendation system, multi-modal AI, CLIP model, image search, cross-modal retrieval, embedding system, vector similarity, hybrid search, semantic search, MLOps pipeline, feature engineering, feature store, model serving, inference optimization, A/B testing, drift detection, model monitoring, production ML, scalable ML, real-time inference, batch processing, ML infrastructure.
 ---
 
 # ML Systems Pro

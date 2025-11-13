@@ -1,7 +1,7 @@
 ---
 name: devops-master
 description: |
-  Container orchestration with Docker and Kubernetes, CI/CD pipeline automation, infrastructure as code with Terraform and Ansible, cloud deployment (AWS, GCP, Azure), monitoring with Prometheus and Grafana, auto-scaling strategies, security hardening, and cost optimization. Use when working with containers, Kubernetes, Docker, CI/CD pipelines, GitLab CI, GitHub Actions, infrastructure provisioning, Terraform, Helm charts, monitoring setup, cloud deployment, microservices deployment, or DevOps automation.
+  Docker Kubernetes CI/CD Terraform infrastructure DevOps automation deployment monitoring. Container orchestration GitHub Actions GitLab pipeline cloud AWS Azure GCP deployment. Use when: DevOps setup, Docker containerization, Kubernetes cluster, CI/CD pipeline, GitHub Actions workflow, GitLab CI, Jenkins pipeline, infrastructure as code, Terraform, cloud deployment, AWS ECS EKS, Azure AKS, GCP GKE, container orchestration, monitoring Prometheus Grafana, logging ELK stack, security scanning, Trivy Snyk, deployment strategy, blue-green canary, infrastructure automation, cloud architecture.
 ---
 
 # DevOps Master Skill

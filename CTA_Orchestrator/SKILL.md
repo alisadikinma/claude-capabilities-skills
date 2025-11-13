@@ -1,7 +1,7 @@
 ---
 name: cta-orchestrator
 description: |
-  Chief Technical Architect orchestration layer that coordinates specialist skills (Web, Mobile, AI, DevOps, System Analysis) for multi-domain technical projects. Activates when projects involve 2+ technical domains, provides architecture decisions, delegates to specialist skills, and ensures consistent integration. Does NOT duplicate specialist knowledge - references specialist skills for implementation details.
+  Multi-domain architecture coordination tech stack evaluation system design orchestration. Complex project planning specialist delegation web mobile AI infrastructure integration. Use when: designing complex system, multi-domain project, architecture decision, tech stack evaluation, coordinating specialists, system integration, web and mobile, mobile and backend, AI and web, microservices architecture, distributed system, enterprise platform, full-stack project, technical feasibility, architecture patterns, technology selection, system scalability, integration strategy, multi-tier architecture, cloud-native design, modern architecture.
 ---
 
 # CTA Orchestrator - Technical Architecture Coordinator

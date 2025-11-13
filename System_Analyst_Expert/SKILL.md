@@ -1,7 +1,7 @@
 ---
 name: system-analyst-expert
 description: |
-  Super senior-level system analysis for unicorn startups and enterprise-scale platforms (OpenAI, Anthropic, Tesla, BYD scale) with deep expertise in AI-powered EMS (Electronic Manufacturing Services) systems. Handles complex distributed systems, multi-tenant SaaS, AI/ML platforms, real-time processing, event-driven architectures, hyper-scale infrastructure, and manufacturing execution systems with computer vision for quality inspection, predictive maintenance, and process optimization. Creates comprehensive system analysis documents including requirements analysis, architecture design, data modeling, API specifications, security architecture, scalability plans, cost projections, and manufacturing system integration. Use when designing enterprise systems, analyzing complex architectures, planning multi-service platforms, AI-powered manufacturing systems, PCB inspection systems, smart factory architectures, evaluating technical feasibility, or documenting system specifications for large-scale applications.
+  Requirements analysis FSD BRD SRD ERD database design API specification system documentation. Business requirements functional specification technical architecture enterprise analysis. Use when: writing requirements, creating FSD, BRD document, SRD specification, system analysis, requirements gathering, business analysis, functional design, ERD database design, API specification, OpenAPI Swagger, system architecture, technical documentation, use case diagram, user stories, acceptance criteria, data modeling, system design, enterprise architecture, microservices design, integration architecture, compliance docs.
 ---
 
 # System Analyst Expert - Super Senior Level

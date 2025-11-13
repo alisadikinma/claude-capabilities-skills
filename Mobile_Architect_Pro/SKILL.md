@@ -1,10 +1,8 @@
 ---
 name: mobile-architect-pro
 description: |
-  Cross-platform mobile architecture for Flutter, React Native, Xamarin, Ionic, and native Kotlin/Android. 
-  Use when building mobile apps, selecting frameworks, implementing state management, optimizing performance, 
-  integrating native modules, handling offline-first architecture, or designing scalable mobile systems.
-  Covers BLoC, Redux, MVVM patterns, Jetpack Compose, navigation, data persistence, and production deployment.
+  Flutter React Native Xamarin Ionic Kotlin mobile app development cross-platform. iOS Android mobile architecture BLoC Redux MVVM Jetpack Compose patterns.
+  Use when: building mobile apps, creating Flutter app, React Native project, mobile architecture, BLoC pattern, Provider Riverpod, Redux Toolkit, state management, navigation setup, native modules, platform channels, offline-first, Firebase integration, push notifications, mobile UI, responsive design, performance optimization, app deployment, Play Store, App Store, mobile testing, cross-platform strategy, framework selection, mobile best practices.
 ---
 
 # Mobile Architect Pro
