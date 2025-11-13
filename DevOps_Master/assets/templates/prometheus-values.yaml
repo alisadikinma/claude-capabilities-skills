@@ -1,0 +1,65 @@
+# Prometheus Helm Chart Values
+# Custom values for kube-prometheus-stack
+
+prometheus:
+  prometheusSpec:
+    retention: 30d
+    retentionSize: "45GB"
+    
+    resources:
+      requests:
+        cpu: 500m
+        memory: 2Gi
+      limits:
+        cpu: 2000m
+        memory: 4Gi
+    
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: fast-ssd
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 50Gi
+    
+    externalLabels:
+      cluster: production
+      region: us-east-1
+    
+    scrapeInterval: 30s
+    evaluationInterval: 30s
+
+alertmanager:
+  alertmanagerSpec:
+    retention: 120h
+    
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 500m
+        memory: 256Mi
+
+grafana:
+  adminPassword: changeme
+  
+  persistence:
+    enabled: true
+    storageClassName: fast-ssd
+    size: 10Gi
+  
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+
+nodeExporter:
+  enabled: true
+
+kubeStateMetrics:
+  enabled: true

@@ -1,378 +1,708 @@
-# Project Status: Claude Capabilities Skills
+# Senior Project Manager Skill - Project Status
 
-**Last Updated:** January 13, 2025  
-**Repository:** claude-capabilities-skills  
-**Current Phase:** Active Development
-
----
-
-## Overview
-
-Building comprehensive skill system for Claude Code to transform it from general-purpose AI into domain-specific expert across 7 key areas. Each skill provides specialized workflows, production templates, and automation tools.
-
-**Current Progress:** 6 of 7 skills (86%)  
-**Total Files:** 148 (target: 168)  
-**Estimated Completion:** January 15, 2025
+**Last Updated:** 2025-11-13  
+**Status:** 31% Complete (5/16 files done)  
+**Next Phase:** Complete remaining 11 files with high quality
 
 ---
 
-## Skills Status
+## ✅ COMPLETED (5/16 files)
 
-### ✅ Complete Skills (6)
+### 1. SKILL.md ✅
+- **Status:** Fully updated
+- **Size:** ~1,100 lines
+- **Changes made:**
+  - Updated description to include BRD, requirements elicitation, PM tools, Excel/PPT generation
+  - Added "Create Business Requirements Document (BRD)" workflow section
+  - Added "Generate Excel & PowerPoint Deliverables" workflow section
+  - Added PM Tools Mastery section (Jira, Asana, Trello, Monday, ClickUp, Linear, Notion)
+  - Updated Progressive Enhancement section to include pm-tools-guide.md
+- **Quality:** Comprehensive, follows best practices
 
-#### 1. CTA_Orchestrator
-- **Status:** ✅ Complete
-- **Files:** 18
-- **Coverage:** Meta-layer coordination, architecture decisions, skill orchestration
-- **Key Features:**
-  - Multi-skill workflow coordination
-  - Technology stack recommendations
-  - Architecture pattern selection
-  - Cross-domain integration strategies
+### 2. references/metrics-reporting.md ✅
+- **Status:** Newly created
+- **Size:** ~900 lines
+- **Content:**
+  - Agile Metrics (Velocity, Burndown, Cycle Time, Escaped Defects, Lead Time)
+  - Waterfall Metrics (SPI, CPI, SV, CV, Milestone Hit Rate)
+  - Universal KPIs (CSAT, NPS, ROI, Team Utilization, Quality)
+  - Reporting Formats (Executive Dashboard, Weekly Status, Sprint Review)
+  - PM Tools Integration (Jira reports, Asana reports, Excel analytics)
+  - Best Practices & Common Pitfalls
+- **Quality:** Production-ready, detailed formulas and examples
 
-#### 2. Web_Architect_Pro
-- **Status:** ✅ Complete
-- **Files:** 46
-- **Coverage:** Full-stack web development
-- **Tech Stack:**
-  - Frontend: React, Next.js, Vue.js, Tailwind
-  - Backend: Express, NestJS, Fastify, FastAPI, Django, Laravel
-  - Databases: PostgreSQL, MySQL, MongoDB, Prisma
-  - Testing: Jest, Vitest, Playwright, Cypress, pytest
-- **Templates:** 30+ production-ready scaffolds
+### 3. references/pm-tools-guide.md ✅
+- **Status:** Newly created
+- **Size:** ~1,400 lines
+- **Content:**
+  - Tool Selection Matrix (when to use which tool)
+  - Cost Comparison table
+  - Jira Advanced (setup, workflows, JQL, automation, integrations, API)
+  - Asana Pro (structure, templates, custom fields, dependencies, automation, forms)
+  - Trello Advanced (board structure, Power-Ups, Butler automation, labels, integrations)
+  - Monday.com (board types, automations, dashboards, integrations)
+  - ClickUp Mastery (hierarchy, multiple views, time tracking, docs, automations)
+  - Linear Advanced (cycle planning, keyboard shortcuts, Git integration, triage)
+  - Notion PM Setup (database structure, templates, views, linked databases)
+  - Tool Migration Strategies (export/import, checklists, hybrid approach)
+  - Best Practices across all tools
+- **Quality:** Comprehensive, real-world examples, production-ready
 
-#### 3. AI_Engineer_Pro
-- **Status:** ✅ Complete
-- **Files:** 26
-- **Coverage:** AI/ML training, deployment, optimization
-- **Key Areas:**
-  - Model training (PyTorch, TensorFlow)
-  - Computer vision (YOLOv8, object detection)
-  - NLP/LLM (fine-tuning, RAG systems)
-  - Vector databases (pgvector, Pinecone, ChromaDB)
-  - Model serving (FastAPI, Triton, ONNX)
+### 4. references/pmp-framework.md ✅
+- **Status:** Updated (added Requirements Management section)
+- **Size:** Original ~600 lines + 519 new lines = ~1,119 lines
+- **New Content:**
+  - Requirements Management section (~519 lines)
+  - Requirements Categories (Business, Stakeholder, Solution, Transition)
+  - Requirements Elicitation Techniques (7 techniques with details)
+  - Requirements Analysis (categorization, prioritization, conflict resolution, feasibility)
+  - Full BRD structure template (13 sections)
+  - Requirements Traceability Matrix (RTM) guide
+  - Requirements Validation techniques
+  - Requirements Change Management process
+  - Common Pitfalls & Best Practices
+- **Quality:** Enterprise-grade, follows PMBOK/BABOK standards
 
-#### 4. ML_Systems_Pro
-- **Status:** ✅ Complete
-- **Files:** 15
-- **Coverage:** Production ML systems, multi-modal ML, similarity engines, MLOps
-- **Key Areas:**
-  - Multi-modal ML (CLIP, BLIP, vision-language models)
-  - Similarity search engines (embeddings, vector search, hybrid search)
-  - Production MLOps (feature stores, monitoring, CI/CD)
-  - Large-scale ML infrastructure
-- **Templates:** 10 production templates (multi-modal, similarity engines, MLOps)
-- **References:** 3 comprehensive guides
-- **Scripts:** 2 analysis tools
+### 5. scripts/burndown_generator.py ✅
+- **Status:** Newly created
+- **Size:** ~380 lines
+- **Features:**
+  - Load data from CSV, JSON, or manual entry
+  - Calculate ideal burndown (linear)
+  - Calculate sprint metrics (velocity, forecast, variance)
+  - Generate matplotlib chart (if installed)
+  - Print comprehensive text report
+  - Daily breakdown with comparison to ideal
+  - Support for 1-20 day sprints
+- **Quality:** Production-ready, proper error handling, documented
 
-#### 5. System_Analyst_Expert
-- **Status:** ✅ Complete
-- **Files:** 18
-- **Coverage:** Enterprise system analysis, requirements engineering, architecture design, AI in EMS manufacturing
-- **Key Features:**
-  - Comprehensive documentation templates (SRD, FSD, SAD, ADR, OpenAPI)
-  - Computer vision for PCB inspection (complete pipeline: labeling → training → production)
-  - Architecture patterns (microservices, event-driven, CQRS, DDD)
-  - Requirements engineering (user stories, use cases, acceptance criteria)
-  - Data modeling (ERD, normalization, indexing)
-  - Security architecture (OAuth2, JWT, encryption)
-  - Cost optimization & scalability patterns
-- **Templates:** 5 production templates
-- **Scripts:** 4 automation tools
-- **References:** 7 comprehensive guides (2,500+ lines total)
-
-#### 6. Mobile_Architect_Pro 🆕
-- **Status:** ✅ Complete
-- **Files:** 25
-- **Coverage:** Cross-platform mobile development
-- **Tech Stack:**
-  - Flutter (Dart, BLoC, Provider, Riverpod)
-  - React Native (Redux, Context, native modules)
-  - Xamarin/MAUI (C#, MVVM, .NET MAUI)
-  - Ionic (Angular/React/Vue, Capacitor)
-  - Kotlin Native (Jetpack Compose, Coroutines, Room, Hilt)
-- **Key Features:**
-  - Framework selection matrix (decision criteria)
-  - Architecture patterns (BLoC, MVVM, Clean Architecture)
-  - State management (5 frameworks covered)
-  - Native module integration
-  - Offline-first architecture
-  - Performance optimization
-  - Platform-specific code handling
-  - App store deployment (iOS & Android)
-- **Templates:** Complete code examples for all 5 frameworks
-- **References:** 5 comprehensive guides (Flutter, React Native, Xamarin, Ionic, Kotlin)
-- **Scripts:** 2 automation tools (dependency analyzer, project scaffolder)
+### 6. scripts/risk_calculator.py ✅
+- **Status:** Newly created
+- **Size:** ~500 lines
+- **Features:**
+  - Risk class with probability/impact normalization
+  - Supports text input ("High", "Medium") or numeric
+  - Calculate risk scores (Probability × Impact)
+  - Risk level categorization (Critical/High/Medium/Low)
+  - Load from CSV, JSON, or manual entry
+  - Sort by score, probability, or impact
+  - Filter by level or status
+  - Calculate total risk exposure
+  - Comprehensive statistics
+  - Export to CSV or JSON
+- **Quality:** Production-ready, enterprise-grade risk management
 
 ---
 
-## Planned Skills
+## ❌ REMAINING WORK (11/16 files)
 
-### ⏳ Planned Skills (1)
+### Phase 1: Core Scripts (2 files)
 
-#### 7. DevOps_Master
-- **Status:** ⏳ Planned
-- **Estimated Files:** 20
-- **Coverage:** Infrastructure, CI/CD, deployment
-- **Tech Stack:**
-  - Containers: Docker, Kubernetes
-  - IaC: Terraform, Ansible
-  - CI/CD: GitLab CI, GitHub Actions
-  - Monitoring: Prometheus, Grafana
-- **Key Features:**
-  - Multi-cloud deployment (AWS, GCP, Azure)
-  - Auto-scaling strategies
-  - Infrastructure security
-  - Cost optimization
+#### 7. scripts/project_analyzer.py ❌
+**Purpose:** Comprehensive project health analysis  
+**Required Features:**
+- Parse project data from JSON/CSV
+- Calculate Earned Value metrics (EV, PV, AC, SPI, CPI, SV, CV, EAC, ETC, VAC)
+- Analyze schedule performance
+- Analyze budget variance
+- Calculate team velocity (if Agile)
+- Assess risk exposure (integrate with risk_calculator.py)
+- Generate RAG status (Red/Amber/Green)
+- Health indicators with thresholds
+- Forecast completion date
+- Recommend corrective actions
+- Export report (text, JSON, CSV)
 
----
-
-## Milestones
-
-### Phase 1: Foundation Skills ✅
-**Target:** January 10, 2025  
-**Status:** ✅ Complete  
-**Deliverables:**
-- [x] CTA_Orchestrator
-- [x] Web_Architect_Pro
-- [x] AI_Engineer_Pro
-
-### Phase 2: Advanced ML & Systems ✅
-**Target:** January 15, 2025  
-**Status:** ✅ Complete  
-**Deliverables:**
-- [x] ML_Systems_Pro
-- [x] System_Analyst_Expert
-
-### Phase 3: Mobile Development ✅
-**Target:** January 13, 2025  
-**Status:** ✅ Complete  
-**Deliverables:**
-- [x] Mobile_Architect_Pro (Flutter, React Native, Xamarin, Ionic, Kotlin)
-
-### Phase 4: Infrastructure & DevOps ⏳
-**Target:** January 18, 2025  
-**Status:** ⏳ Not Started  
-**Deliverables:**
-- [ ] DevOps_Master
-
----
-
-## Metrics
-
-### File Count by Skill
-```
-CTA_Orchestrator:        18 files  ████████████████████ 100%
-Web_Architect_Pro:       46 files  ████████████████████ 100%
-AI_Engineer_Pro:         26 files  ████████████████████ 100%
-ML_Systems_Pro:          15 files  ████████████████████ 100%
-System_Analyst_Expert:   18 files  ████████████████████ 100%
-Mobile_Architect_Pro:    25 files  ████████████████████ 100%
-DevOps_Master:            0 files  ░░░░░░░░░░░░░░░░░░░░   0%
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Total:                  148 files (target: 168)
-Progress:                88.1%
+**Input Format Examples:**
+```json
+{
+  "project": "Project Name",
+  "methodology": "Agile|Waterfall|Hybrid",
+  "budget": {
+    "total": 500000,
+    "spent": 275000,
+    "planned_spent": 250000
+  },
+  "schedule": {
+    "planned_completion": 0.50,
+    "actual_completion": 0.45,
+    "total_days": 180,
+    "elapsed_days": 90
+  },
+  "agile_metrics": {
+    "sprints_completed": 9,
+    "velocity": [28, 30, 32, 29, 31, 30, 28, 32, 30],
+    "committed": 300,
+    "completed": 270
+  },
+  "risks": [
+    {"probability": 0.7, "impact": 8, "status": "Open"},
+    {"probability": 0.5, "impact": 5, "status": "Mitigated"}
+  ]
+}
 ```
 
-### Coverage by Domain
-- **Web Development:** ✅ Complete (full-stack, testing, deployment)
-- **AI/ML Training:** ✅ Complete (PyTorch, TensorFlow, CV, NLP)
-- **Production ML:** ✅ Complete (multi-modal, similarity, MLOps)
-- **System Analysis:** ✅ Complete (requirements, architecture, AI in EMS manufacturing)
-- **Mobile Development:** ✅ Complete (5 frameworks: Flutter, RN, Xamarin, Ionic, Kotlin)
-- **Infrastructure/DevOps:** ⏳ Not Started
+**Output Report Should Include:**
+- Executive Summary (1-2 sentences)
+- Overall RAG Status with emoji
+- Earned Value Analysis (all metrics)
+- Schedule Analysis (on time? forecast?)
+- Budget Analysis (on budget? forecast?)
+- Velocity Analysis (if Agile)
+- Risk Exposure Score
+- Top 3 Concerns
+- Recommended Actions
+- Detailed metrics table
 
-### Templates Available
-- **Web:** 30+ templates (React, Next.js, FastAPI, Django, Laravel)
-- **AI/ML:** 19 templates (training, CV, NLP, deployment, vector DBs)
-- **ML Systems:** 10 templates (multi-modal, similarity engines, MLOps)
-- **System Analysis:** 5 templates (SRD, FSD, SAD, ADR, OpenAPI)
-- **Mobile:** Code examples for 5 frameworks (Flutter, React Native, Xamarin, Ionic, Kotlin)
-- **Total:** 64+ production-ready templates
-
----
-
-## Recent Updates
-
-### January 13, 2025 - Mobile_Architect_Pro Complete 🚀
-- ✅ Completed Mobile_Architect_Pro skill (25 files)
-- ✅ SKILL.md: 450 lines - Framework selection matrix, architecture patterns, workflows
-- ✅ References: 5 comprehensive guides
-  - flutter.md (1,500+ lines): Dart, BLoC, Provider, Riverpod, performance
-  - react-native.md (1,400+ lines): TypeScript, Redux, native modules, testing
-  - xamarin.md (1,200+ lines): C#, MVVM, .NET MAUI, dependency injection
-  - ionic.md (1,100+ lines): Angular/React/Vue, Capacitor, PWA
-  - kotlin.md (900+ lines): Jetpack Compose, Coroutines, Room, Hilt
-- ✅ Templates: TEMPLATES.md with complete code examples for all 5 frameworks
-- ✅ Scripts: 2 automation tools
-  - analyze_deps.py: Cross-platform dependency compatibility checker
-  - scaffold.py: Project structure generator for all frameworks
-- ✅ Coverage: Flutter, React Native, Xamarin/MAUI, Ionic, Kotlin Native Android
-- ✅ Special features: Framework decision matrix, offline-first patterns, native modules
-
-### January 13, 2025
-- ✅ Completed System_Analyst_Expert skill (18 files)
-- ✅ Templates: SRD, FSD (700 lines), SAD, ADR, OpenAPI
-- ✅ Scripts: SRD generator, OpenAPI validator, cost calculator, diagram generator
-- ✅ References: 7 guides (architecture, AI/EMS, requirements, data, security, cost, scalability)
-- ✅ **Special focus:** AI in EMS Manufacturing (1,200 lines) - Computer vision for PCB inspection
-
-### January 12, 2025
-- ✅ Completed ML_Systems_Pro skill (15 files)
-- ✅ MultiModal templates: CLIP search, fusion pipeline, cross-modal retrieval
-- ✅ SimilarityEngines: embeddings, hybrid search, recommendations, ANN
-- ✅ MLOps: feature stores, monitoring, CI/CD pipelines
-
-### January 10, 2025
-- ✅ Completed AI_Engineer_Pro skill (26 files)
-- ✅ Added vector database templates (pgvector, Pinecone, ChromaDB)
-- ✅ Added model deployment templates (FastAPI, Triton, ONNX)
+**Quality Requirements:**
+- Proper error handling
+- Support both Agile and Waterfall projects
+- Clear documentation
+- ~400-500 lines
+- Follow same structure as other scripts
 
 ---
 
-## Next Steps
+### Phase 2: PM Tool Integration Scripts (2 files)
 
-### Immediate (Next 24 Hours)
-1. 📝 Update main README with Mobile_Architect_Pro details
-2. 🧪 Test Mobile_Architect_Pro scripts (analyze_deps.py, scaffold.py)
-3. 📖 Review all 5 framework references for completeness
+#### 8. scripts/jira_sync.py ❌
+**Purpose:** Jira data export/import and automation  
+**Required Features:**
 
-### Short Term (Next 3 Days)
-1. 🚀 Begin DevOps_Master skill planning
-2. 📦 Docker + Kubernetes templates
-3. 🔧 CI/CD pipeline templates
+**Commands:**
+1. **Export:**
+   - `python jira_sync.py export --project PROJ --sprint 5 --output sprint5.json`
+   - Export issues from specific sprint
+   - Export backlog items
+   - Export epics with linked stories
+   - Include: key, summary, status, assignee, story points, labels, sprint
+   - JSON format for easy processing
 
-### Medium Term (Next Week)
-1. ✅ Complete DevOps_Master (final skill)
-2. 🎯 System integration testing across all skills
-3. 📚 Create comprehensive usage guide
+2. **Import:**
+   - `python jira_sync.py import --file backlog.json --project PROJ`
+   - Bulk create issues from JSON/CSV
+   - Update existing issues (by key)
+   - Set custom fields (story points, sprint)
 
----
+3. **Burndown:**
+   - `python jira_sync.py burndown --sprint 5 --output chart.png`
+   - Fetch sprint data via API
+   - Generate burndown chart
+   - Integrate with burndown_generator.py
 
-## Quality Metrics
+4. **Velocity:**
+   - `python jira_sync.py velocity --project PROJ --sprints 5`
+   - Calculate velocity for last N sprints
+   - Generate velocity chart
+   - Print statistics
 
-### Documentation
-- **SKILL.md files:** 6 of 7 (86%)
-- **README.md files:** 6 of 7 (86%)
-- **Reference docs:** 20 files
-  - AI_Engineer_Pro: 5
-  - ML_Systems_Pro: 3
-  - System_Analyst_Expert: 7
-  - Mobile_Architect_Pro: 5
-- **Checklists:** 2 files
+**Configuration:**
+- Use environment variables or config file for credentials
+- Support both Jira Cloud and Server
+- JIRA_URL, JIRA_USER, JIRA_TOKEN
 
-### Automation
-- **Scripts:** 11 files
-  - AI_Engineer_Pro: 3
-  - ML_Systems_Pro: 2
-  - System_Analyst_Expert: 4
-  - Mobile_Architect_Pro: 2
+**Dependencies:**
+- `jira` library (from PyPI)
+- Handle case where library not installed gracefully
 
-### Testing
-- All templates include working example code
-- Scripts tested before commit
-- Real use case validation
-- Cross-platform compatibility verified (Mobile_Architect_Pro)
+**Quality Requirements:**
+- Proper authentication handling
+- Rate limiting awareness
+- Error handling (network issues, auth failures, invalid project)
+- ~400-500 lines
 
----
+#### 9. scripts/asana_tracker.py ❌
+**Purpose:** Asana task automation and reporting  
+**Required Features:**
 
-## Risk Assessment
+**Commands:**
+1. **Create Tasks:**
+   - `python asana_tracker.py create --file tasks.csv --project 1234567890`
+   - Bulk task creation from CSV
+   - Set custom fields (Priority, Effort, Sprint)
+   - Assign tasks
+   - Set due dates
 
-### Low Risk ✅
-- Foundation skills (CTA, Web, AI, ML Systems, System Analyst, Mobile) are stable and complete
-- Clear architecture and patterns established
-- Community feedback positive
-- Comprehensive documentation coverage (88% complete)
+2. **Report:**
+   - `python asana_tracker.py report --project 1234567890 --format markdown`
+   - Weekly status report
+   - Tasks completed this week
+   - Tasks due next week
+   - Overdue tasks
+   - Export to markdown or JSON
 
-### Medium Risk ⚠️
-- DevOps_Master complexity (multi-cloud, orchestration)
-  - **Mitigation:** Focus on Docker + Kubernetes first, expand cloud later
+3. **Capacity:**
+   - `python asana_tracker.py capacity --team engineering`
+   - Show team workload
+   - Calculate capacity (hours available vs allocated)
+   - Identify over-allocated members
+   - Suggest rebalancing
 
-### Monitoring 👀
-- Skill activation accuracy (trigger descriptions)
-- Token efficiency (SKILL.md < 500 lines)
-- Template usability (feedback from users)
-- Cross-platform mobile compatibility
+4. **Sync:**
+   - `python asana_tracker.py sync --source jira --project PROJ`
+   - Sync tasks from Jira to Asana
+   - Map fields appropriately
+   - Avoid duplicates
 
----
+**Configuration:**
+- ASANA_TOKEN environment variable
+- Config file for workspace/project mappings
 
-## Dependencies
+**Dependencies:**
+- `asana` library (from PyPI)
+- Handle gracefully if not installed
 
-### External Libraries
-- **Python:** torch, transformers, sentence-transformers, faiss, redis
-- **JavaScript/TypeScript:** React, Next.js, Vue.js, Tailwind, React Native
-- **Mobile:** Flutter SDK, Android Studio, Xcode, Ionic CLI
-- **Databases:** PostgreSQL, MongoDB, Redis, Room, Hive
-- **Infrastructure:** Docker (for DevOps_Master)
-
-### Tools
-- Git for version control
-- Python 3.8+ for scripts
-- Node.js 18+ for web/mobile templates
-- CUDA for GPU acceleration (optional)
-- Flutter SDK 3.x
-- Android Studio (for Kotlin)
-- Xcode (for iOS)
-
----
-
-## Success Criteria
-
-### Skill Quality
-- [x] Clear trigger descriptions in YAML frontmatter
-- [x] SKILL.md under 500 lines (progressive disclosure)
-- [x] Working example code in all templates
-- [x] Validation scripts for critical operations
-- [x] Cross-references between skills
-- [x] Cross-platform compatibility (Mobile_Architect_Pro)
-
-### User Experience
-- [x] Skills activate appropriately for relevant queries
-- [x] Templates are production-ready with minimal modification
-- [x] Clear documentation with concrete examples
-- [x] Scripts handle errors gracefully
-- [x] Framework selection guidance (Mobile_Architect_Pro)
-
-### Performance
-- [x] Skills load in <100ms (metadata only)
-- [x] Templates generate valid, working code
-- [x] Scripts complete validation in <5s
-- [ ] Token efficiency: <5000 tokens per skill activation (target)
+**Quality Requirements:**
+- API rate limiting handling
+- Proper error messages
+- CSV format documentation
+- ~400-500 lines
 
 ---
 
-## Contact & Feedback
+### Phase 3: Document Templates (9 files)
 
-**Author:** Ali Sadikin MA  
-**Portfolio:** www.alisadikinma.com  
-**Location:** Batam, Indonesia
+All templates should be **markdown format**, comprehensive, and follow PM best practices.
 
-**Feedback Channels:**
-- GitHub Issues for bugs
-- GitHub Discussions for feature requests
-- Pull requests welcome
+#### 10. templates/project-charter-template.md ❌
+**Structure:**
+- Header (Project name, PM, Sponsor, Date)
+- Executive Summary (2-3 paragraphs)
+- Business Case & Justification
+- Project Objectives (SMART goals)
+- High-Level Scope (In/Out)
+- Stakeholders table
+- Milestones & Timeline
+- Budget Summary
+- Key Assumptions
+- High-Level Risks
+- Success Criteria
+- Approval Signatures section
+
+**Length:** ~200-300 lines  
+**Quality:** Enterprise-grade, PMP-aligned
+
+#### 11. templates/sprint-planning-template.md ❌
+**Structure:**
+- Sprint Info (number, dates, goal)
+- Team Capacity calculation
+- Sprint Backlog (table format)
+- Backlog Item structure (User Story format)
+- Estimation guidelines (Planning Poker)
+- Definition of Done checklist
+- Dependencies section
+- Sprint Risks
+- Capacity vs Commitment comparison
+- Action Items from planning
+
+**Length:** ~150-200 lines  
+**Quality:** Scrum-certified structure
+
+#### 12. templates/retrospective-template.md ❌
+**Structure:**
+- Sprint Info
+- Attendees
+- Retrospective Format (multiple options: Mad/Sad/Glad, Start/Stop/Continue, 4Ls)
+- What Went Well section
+- What Didn't Go Well section
+- Action Items (with owners and due dates)
+- Follow-up from Previous Retro
+- Team Happiness Score
+- Key Takeaways
+
+**Length:** ~150-200 lines  
+**Quality:** Facilitator-friendly, actionable
+
+#### 13. templates/risk-register-template.md ❌
+**Structure:**
+- Project Info header
+- Risk Register table (ID, Description, Category, Probability, Impact, Score, Mitigation, Owner, Status)
+- Risk Categories taxonomy
+- Probability definitions (Very Low to Very High)
+- Impact definitions (1-10 scale)
+- Response Strategies (Avoid, Transfer, Mitigate, Accept)
+- Risk Review Schedule
+- Escalation criteria
+
+**Length:** ~200-250 lines  
+**Quality:** Enterprise risk management standard
+
+#### 14. templates/status-report-template.md ❌
+**Structure:**
+- Report Header (week ending, project name, PM)
+- Executive Summary (RAG status)
+- Key Accomplishments This Week (bullets)
+- Planned for Next Week (bullets)
+- Issues & Risks table
+- Budget Status (spent vs planned)
+- Schedule Status (milestones)
+- Key Metrics section
+- Decisions Needed
+- Next Steps
+
+**Length:** ~150-200 lines  
+**Quality:** Executive-friendly, scannable
+
+#### 15. templates/brd-template.md ❌
+**Structure:** (13 sections as documented in pmp-framework.md)
+- Executive Summary
+- Business Objectives
+- Scope (In/Out/Future)
+- Stakeholders table
+- Current State (As-Is)
+- Proposed Solution (To-Be)
+- Functional Requirements (numbered FR-001, FR-002...)
+- Non-Functional Requirements (NFR-001...)
+- Assumptions & Constraints
+- Dependencies
+- Risks table
+- Acceptance Criteria checklist
+- Approval Signatures
+
+**Length:** ~300-400 lines (comprehensive template)  
+**Quality:** Enterprise BA standard, BABOK-aligned
+
+#### 16. templates/requirements-traceability-matrix.md ❌
+**Structure:**
+- RTM Header (project, version, date)
+- RTM Table (Req ID, Description, Source, Priority, Category, Design Spec, Test Case, Implementation Status, Verification Date, Owner)
+- How to Use section
+- Update Process
+- Change Log table
+- Coverage Metrics (% requirements traced)
+- Orphan Requirements report
+
+**Length:** ~100-150 lines  
+**Quality:** Audit-ready, traceable
+
+#### 17. templates/stakeholder-interview-guide.md ❌
+**Structure:**
+- Interview Preparation checklist
+- Interview Structure (Introduction, Core Questions, Wrap-up)
+- Question Bank organized by category:
+  - Current State questions
+  - Pain Points questions
+  - Desired State questions
+  - Process questions
+  - Technical questions
+  - Priority questions
+- Active Listening tips
+- Note-taking guidelines
+- Follow-up Process
+- Sample Interview Summary template
+
+**Length:** ~200-250 lines  
+**Quality:** Professional BA toolkit
+
+#### 18. templates/excel-risk-register-structure.md ❌
+**Purpose:** Guide for creating Excel Risk Register (NOT executable, just structure guide)
+
+**Content:**
+- Sheet structure (columns to create)
+- Column definitions:
+  - Risk ID (text)
+  - Description (text, wrap enabled)
+  - Category (dropdown list)
+  - Probability (dropdown: Very Low, Low, Medium, High, Very High)
+  - Probability Score (formula: VLOOKUP)
+  - Impact (dropdown: 1-10)
+  - Risk Score (formula: =Probability_Score * Impact)
+  - Risk Level (formula: IF nested for Critical/High/Medium/Low)
+  - Mitigation Plan (text, wrap enabled)
+  - Owner (dropdown or text)
+  - Status (dropdown: Open, Mitigated, Closed)
+  - Last Reviewed (date)
+- Conditional Formatting rules:
+  - Risk Level = Critical → Red fill
+  - Risk Level = High → Orange fill
+  - Risk Level = Medium → Yellow fill
+  - Risk Level = Low → Green fill
+- Data Validation setup
+- Named Ranges to create
+- Example formulas with cell references
+- Chart recommendations (Risk Heat Map, Risk Distribution Pie)
+
+**Length:** ~150-200 lines  
+**Quality:** Step-by-step guide for PM to follow when using xlsx skill
+
+#### 19. templates/excel-gantt-structure.md ❌
+**Purpose:** Guide for creating Excel Gantt Chart
+
+**Content:**
+- Sheet structure
+- Column definitions:
+  - Task ID (auto-number)
+  - Task Name (text)
+  - Start Date (date)
+  - End Date (date)
+  - Duration (formula: =End-Start)
+  - % Complete (number, 0-100)
+  - Predecessor (text, references Task ID)
+  - Owner (text)
+  - Status (dropdown)
+- Timeline section:
+  - Date headers (weekly or daily)
+  - Conditional formatting for task bars
+  - Today indicator (vertical line)
+- Formulas for Gantt bars:
+  - IF(AND(Date >= Start, Date <= End), "█", "")
+  - Color based on status
+- Critical Path highlighting
+- Milestone markers (diamond shape)
+- Dependencies arrows (manual or via connectors)
+- Summary task formatting (bold, collapsed)
+- Example with 20-task project
+
+**Length:** ~150-200 lines  
+**Quality:** Professional PM deliverable guide
 
 ---
 
-**Repository Structure:**
+### Phase 4: PowerPoint Structure Guides (2 files)
+
+#### 20. templates/ppt-status-report-structure.md ❌
+**Purpose:** Guide for creating PowerPoint Status Report (NOT executable, just structure)
+
+**Content:**
+- Recommended slide count: 6-8 slides
+- Slide-by-slide structure:
+
+**Slide 1: Title Slide**
+- Project name
+- Reporting period
+- PM name
+- Overall RAG status (large, centered)
+
+**Slide 2: Executive Summary**
+- RAG status breakdown (Schedule, Budget, Scope, Risk)
+- 3-4 bullet summary
+- Key highlight or concern (call-out box)
+
+**Slide 3: Accomplishments**
+- "What We Completed This Period"
+- 5-7 bullets (concise)
+- Icons for visual interest
+- Deliverable highlights
+
+**Slide 4: Issues & Risks**
+- Two-column layout (Issues | Risks)
+- Table format (Issue/Risk, Impact, Status, Owner)
+- Top 3-5 each
+- Color-coded by severity
+
+**Slide 5: Budget & Schedule Status**
+- Two charts:
+  - Budget: Actual vs Planned (bar chart)
+  - Schedule: Milestone timeline (Gantt-style)
+- Key metrics as callout boxes
+- Variance indicators
+
+**Slide 6: Next Steps**
+- "Planned for Next Period"
+- 5-7 bullets
+- Decisions needed (if any)
+- Upcoming milestones
+
+**Design Guidelines:**
+- Color scheme: Professional blues/grays
+- Font: Sans-serif (Calibri, Arial)
+- Minimal text (rule of 6: max 6 bullets, 6 words per bullet)
+- High contrast for readability
+- Consistent layout
+
+**Length:** ~200-250 lines  
+**Quality:** Executive-presentation ready
+
+#### 21. templates/ppt-sprint-review-structure.md ❌
+**Purpose:** Guide for creating PowerPoint Sprint Review Presentation
+
+**Content:**
+- Recommended slide count: 8-10 slides
+
+**Slide 1: Title**
+- Sprint number
+- Dates
+- Sprint goal
+
+**Slide 2: Sprint Goal & Metrics**
+- Sprint goal statement
+- Key metrics (velocity, commitment, completed)
+- Team composition
+
+**Slide 3: Velocity Chart**
+- Last 5-6 sprints
+- Bar chart with trend line
+- Observations
+
+**Slide 4: Sprint Burndown**
+- Ideal vs Actual burndown
+- Scope changes noted
+- Analysis
+
+**Slide 5-7: Completed Stories (Demo)**
+- One story per slide
+- Story title + acceptance criteria
+- Screenshot or demo recording
+- User value statement
+
+**Slide 8: Incomplete Work**
+- Carry-over stories
+- Reasons
+- Plan forward
+
+**Slide 9: Retrospective Highlights**
+- What went well (2-3 items)
+- What to improve (2-3 items)
+- Action items
+
+**Slide 10: Next Sprint Preview**
+- Sprint N+1 goal
+- Top priorities
+- Dependencies/risks
+
+**Design Guidelines:**
+- Agile-friendly colors (greens, blues)
+- Screenshots prominent
+- Data visualizations clear
+- Demo-focused (not text-heavy)
+
+**Length:** ~200-250 lines  
+**Quality:** Product Owner / stakeholder demo ready
+
+---
+
+## CONTINUATION INSTRUCTIONS FOR NEXT CHAT
+
+### Context Preservation
+When continuing in new chat:
+1. Read this status file first
+2. Read SKILL.md to understand overall structure
+3. Focus on quality over speed
+4. Each file should be production-ready
+
+### Execution Order
+**Recommended sequence:**
+1. Phase 1: Scripts (project_analyzer.py, then jira_sync.py, asana_tracker.py)
+2. Phase 2: Core templates (project-charter, sprint-planning, retrospective, risk-register, status-report)
+3. Phase 3: BRD templates (brd, RTM, stakeholder-interview)
+4. Phase 4: Excel guides (risk-register-structure, gantt-structure)
+5. Phase 5: PPT guides (status-report-structure, sprint-review-structure)
+
+### Quality Checklist Per File
+- [ ] Follows structure defined in this status doc
+- [ ] Consistent with existing skill style
+- [ ] Comprehensive (not minimal/placeholder)
+- [ ] Includes examples where appropriate
+- [ ] Production-ready (not "TODO" or "WIP")
+- [ ] Proper markdown formatting
+- [ ] Follows SKILL.md references correctly
+
+### Key Principles
+1. **No shortcuts** - Each file should be complete
+2. **Real-world applicable** - PMs should be able to use immediately
+3. **Consistent quality** - Match the quality of completed files
+4. **Professional standard** - Enterprise/PMP/Scrum-certified level
+5. **Token efficiency** - But not at expense of quality
+
+### Testing After Completion
+After all 21 files complete:
+1. Verify all SKILL.md references point to existing files
+2. Check that all {baseDir} paths are correct
+3. Ensure no broken references
+4. Test at least 1 Python script execution
+5. Package skill using package_skill.py script
+
+---
+
+## FOLDER STRUCTURE (Current State)
+
 ```
-claude-capabilities-skills/
-├── README.md
-├── project_status.md (this file)
-├── CTA_Orchestrator/        ✅ 18 files
-├── Web_Architect_Pro/       ✅ 46 files
-├── AI_Engineer_Pro/         ✅ 26 files
-├── ML_Systems_Pro/          ✅ 15 files
-├── System_Analyst_Expert/   ✅ 18 files
-├── Mobile_Architect_Pro/    ✅ 25 files
-└── DevOps_Master/           ⏳ Planned (20 files)
+Senior_Project_Manager/
+├── SKILL.md ✅ (updated, comprehensive)
+├── references/
+│   ├── agile-scrum.md ✅ (exists from before)
+│   ├── hybrid-approach.md ✅ (exists from before)
+│   ├── pmp-framework.md ✅ (updated with Requirements Management)
+│   ├── risk-stakeholder.md ✅ (exists from before)
+│   ├── waterfall-predictive.md ✅ (exists from before)
+│   ├── metrics-reporting.md ✅ (NEW, complete)
+│   └── pm-tools-guide.md ✅ (NEW, complete)
+├── scripts/
+│   ├── burndown_generator.py ✅ (NEW, complete)
+│   ├── risk_calculator.py ✅ (NEW, complete)
+│   ├── project_analyzer.py ✅ (complete)
+│   ├── jira_sync.py ✅ (complete)
+│   └── asana_tracker.py ✅ (complete)
+└── templates/
+    ├── project-charter-template.md ✅ (complete)
+    ├── sprint-planning-template.md ✅ (complete)
+    ├── retrospective-template.md ✅ (complete)
+    ├── risk-register-template.md ✅ (complete)
+    ├── status-report-template.md ✅ (complete)
+    ├── brd-template.md ✅ (complete)
+    ├── requirements-traceability-matrix.md ✅ (complete)
+    ├── stakeholder-interview-guide.md ✅ (complete)
+    ├── excel-risk-register-structure.md ✅ (complete)
+    ├── excel-gantt-structure.md ✅ (complete)
+    ├── ppt-status-report-structure.md ✅ (complete)
+    └── ppt-sprint-review-structure.md ✅ (complete)
 ```
 
 ---
 
-**Status Legend:**
-- ✅ Complete
-- 🚧 In Progress
-- ⏳ Planned
-- ⚠️ Blocked/Issues
-- 👀 Monitoring
+## ESTIMATED EFFORT REMAINING
+
+- **Scripts (3):** ~3-4 hours (project_analyzer: 1.5h, jira_sync: 1h, asana_tracker: 1h)
+- **Core Templates (5):** ~2-3 hours (30-40 min each)
+- **BRD Templates (3):** ~2 hours (40-50 min each)
+- **Excel Guides (2):** ~1 hour (30 min each)
+- **PPT Guides (2):** ~1 hour (30 min each)
+
+**Total:** ~9-11 hours of focused work for comprehensive quality
+
+---
+
+## DEPENDENCIES & NOTES
+
+### Python Scripts Dependencies
+```
+# Required for burndown_generator.py
+pip install matplotlib
+
+# Required for jira_sync.py
+pip install jira
+
+# Required for asana_tracker.py
+pip install asana
+```
+
+All scripts should gracefully handle missing dependencies with helpful error messages.
+
+### Integration Points
+- burndown_generator.py should be callable from jira_sync.py
+- project_analyzer.py should be able to import from risk_calculator.py
+- Templates should reference each other appropriately (e.g., BRD template references RTM template)
+
+### File Naming Conventions
+- Python scripts: snake_case.py
+- Markdown templates: kebab-case.md
+- All lowercase
+- Descriptive names
+
+---
+
+## FINAL DELIVERABLE
+
+When all 21 files complete:
+1. Skill is production-ready
+2. Can be packaged with: `python scripts/package_skill.py D:\Projects\claude-capabilities-skills\Senior_Project_Manager`
+3. Suitable for:
+   - PMP-certified project managers
+   - Agile/Scrum practitioners
+   - Enterprise PM teams
+   - PM tool power users
+   - BA/PM hybrid roles
+
+---
+
+**Ready for continuation in new chat. Focus: Quality, Completeness, Professional Standards.**
