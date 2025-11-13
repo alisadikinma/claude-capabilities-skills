@@ -82,14 +82,6 @@
 
 ### 🏗️ Architecture Deep Dive
 
-<div align="center">
-
-![Agent Skills Architecture](https://github.com/alisadikinma/claude-capabilities-skills/raw/main/docs/agent-skills-architecture.png)
-
-*Figure: Anthropic's Agent + Skills + Virtual Machine Architecture*
-
-</div>
-
 **How It Works:**
 
 ```
