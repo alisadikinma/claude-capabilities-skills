@@ -164,11 +164,14 @@ cd claude-capabilities-skills
 ```
 
 **Upload Process:**
-1. Open **Claude.ai** → **Projects**
-2. Create/select your project
-3. Click **"Add Skill"** (top-right corner)
-4. Select `.skill` file(s) you need
-5. Done! Skills auto-activate when relevant ✨
+1. Open **Claude.ai**
+2. Click **Settings** (bottom-left corner)
+3. Go to **Capabilities** → **Skills**
+4. Click **"Add Skill"** button
+5. Select `.skill` file(s) you need
+6. Done! Skills auto-activate when relevant ✨
+
+> 💡 **Tip:** Skills yang diupload di Settings akan tersedia di **semua project**. Jika ingin skill hanya untuk 1 project tertentu, upload di project settings.
 
 ### Step 3: Start Using
 
