@@ -151,6 +151,8 @@ cd claude-capabilities-skills
 
 ### Step 2: Upload to Claude
 
+#### **Option A: Claude Web (claude.ai)**
+
 ```
 📂 D:\Projects\claude-capabilities-skills\
 ├── 📦 CTA_Orchestrator.skill
@@ -172,6 +174,83 @@ cd claude-capabilities-skills
 6. Done! Skills auto-activate when relevant ✨
 
 > 💡 **Tip:** Skills yang diupload di Settings akan tersedia di **semua project**. Jika ingin skill hanya untuk 1 project tertentu, upload di project settings.
+
+---
+
+#### **Option B: Claude Desktop & Claude Code (Local)**
+
+**1. Ekstrak Skills ke Folder**
+
+```bash
+# Windows
+cd %APPDATA%\Claude\skills\
+
+# macOS/Linux
+cd ~/.claude/skills/
+```
+
+**2. Unzip .skill files**
+
+```bash
+# Unzip semua skills (Windows PowerShell)
+Expand-Archive -Path "D:\Projects\claude-capabilities-skills\*.skill" -DestinationPath "%APPDATA%\Claude\skills\"
+
+# Atau manual:
+# - Rename .skill → .zip
+# - Extract ke %APPDATA%\Claude\skills\
+# - Setiap skill dalam folder sendiri
+```
+
+**3. Struktur Akhir:**
+
+```
+%APPDATA%\Claude\skills\
+├── CTA_Orchestrator/
+│   ├── SKILL.md
+│   ├── references/
+│   └── scripts/
+├── Web_Architect_Pro/
+│   ├── SKILL.md
+│   ├── assets/
+│   ├── references/
+│   └── scripts/
+├── AI_Engineer_Pro/
+│   └── ...
+└── [Other skills]/
+```
+
+**4. Verifikasi Installation**
+
+```bash
+# Claude Code (terminal)
+claude code --list-skills
+
+# Atau start chat
+claude code
+> What skills are available?
+```
+
+---
+
+#### **Option C: Project-Specific Skills**
+
+Untuk skills yang **hanya untuk 1 project** tertentu:
+
+```bash
+# Di root project Anda
+mkdir .claude\skills
+
+# Copy/unzip skills ke sini
+D:\MyProject\
+├── .claude/
+│   └── skills/
+│       ├── Mobile_Architect_Pro/
+│       └── AI_Engineer_Pro/
+├── src/
+└── package.json
+```
+
+> ⚠️ **Penting:** Project skills hanya aktif di folder project tersebut. Global skills (di `%APPDATA%\Claude\skills`) aktif di semua project.
 
 ### Step 3: Start Using
 
