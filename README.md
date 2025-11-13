@@ -41,26 +41,42 @@
 
 <div align="center">
 
-```mermaid
-graph TB
-    A[👤 You: "Build Flutter App"] --> B[🧠 Claude Agent]
-    B --> C{Skill Detection}
-    C -->|Activates| D[📱 Mobile_Architect_Pro]
-    D --> E[🖥️ Virtual Machine]
-    E --> F[💻 Execute Commands]
-    F --> G1[📂 Create Files]
-    F --> G2[🔧 Run Scripts]
-    F --> G3[📦 Install Deps]
-    G1 --> H[✅ Complete Project]
-    G2 --> H
-    G3 --> H
-    H --> I[📤 Deliver to You]
-    
-    style B fill:#ff6b6b,color:#fff
-    style D fill:#4ecdc4,color:#fff
-    style E fill:#45b7d1,color:#fff
-    style H fill:#96ceb4,color:#fff
 ```
+                    [Your Request]
+                          |
+                          v
+                ┌─────────────────┐
+                │  Claude Agent   │  ← Equipped with Skills
+                │   (Reasoning)   │
+                └────────┬────────┘
+                         |
+                    Detects: "Flutter"
+                         |
+                         v
+            ┌────────────────────────┐
+            │ Mobile_Architect_Pro   │  ← Skill Activated
+            │   Loads Instructions   │
+            └──────────┬─────────────┘
+                       |
+                       v
+            ┌──────────────────────┐
+            │  Virtual Machine     │  ← Executes
+            │  (Bash/Python/Node)  │
+            └──────────┬───────────┘
+                       |
+         ┌─────────────┼─────────────┐
+         v             v             v
+   [Create Files] [Run Scripts] [Install Deps]
+         |             |             |
+         └─────────────┼─────────────┘
+                       v
+              ✅ Complete Project
+                       |
+                       v
+                  [Deliver]
+```
+
+**Flow:** Request → Skill Detection → Load Instructions → Execute → Deliver
 
 </div>
 
