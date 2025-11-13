@@ -1,6 +1,7 @@
 ---
-name: AI_Engineer_Pro
-description: Comprehensive AI/ML engineering skill for training, deployment, and optimization of machine learning models. Use when Claude needs to work with: (1) PyTorch or TensorFlow training pipelines, (2) Computer vision tasks (object detection, image classification, PCB defect inspection), (3) NLP/LLM fine-tuning and inference, (4) RAG systems and vector databases (pgvector, Pinecone, ChromaDB), (5) Model deployment (FastAPI, Triton Inference Server, ONNX), (6) Model optimization and inference acceleration, (7) MLOps workflows and experiment tracking
+name: ai-engineer-pro
+description: |
+  Comprehensive AI/ML engineering skill for training, deployment, and optimization of machine learning models. Use when Claude needs to work with: (1) PyTorch or TensorFlow training pipelines, (2) Computer vision tasks (object detection, image classification, PCB defect inspection), (3) NLP/LLM fine-tuning and inference, (4) RAG systems and vector databases (pgvector, Pinecone, ChromaDB), (5) Model deployment (FastAPI, Triton Inference Server, ONNX), (6) Model optimization and inference acceleration, (7) MLOps workflows and experiment tracking
 ---
 
 # AI Engineer Pro

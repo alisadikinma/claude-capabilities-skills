@@ -5,7 +5,6 @@ description: |
   Use when building mobile apps, selecting frameworks, implementing state management, optimizing performance, 
   integrating native modules, handling offline-first architecture, or designing scalable mobile systems.
   Covers BLoC, Redux, MVVM patterns, Jetpack Compose, navigation, data persistence, and production deployment.
-version: 1.0.0
 ---
 
 # Mobile Architect Pro
