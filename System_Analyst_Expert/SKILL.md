@@ -1,7 +1,7 @@
 ---
 name: system-analyst-expert
 description: |
-  Requirements analysis FSD BRD SRD ERD database design API specification system documentation. Business requirements functional specification technical architecture enterprise analysis. Use when: writing requirements, creating FSD, BRD document, SRD specification, system analysis, requirements gathering, business analysis, functional design, ERD database design, API specification, OpenAPI Swagger, system architecture, technical documentation, use case diagram, user stories, acceptance criteria, data modeling, system design, enterprise architecture, microservices design, integration architecture, compliance docs.
+  Analyzes enterprise systems and creates technical documentation (FSD, BRD, SRD, ERD, OpenAPI specs). Designs distributed architectures using microservices, event-driven patterns, and Domain-Driven Design. Specializes in AI/ML integration and AI in Electronic Manufacturing Services (PCB inspection, predictive maintenance, MES). Creates scalability analyses and architecture decision records. Use when writing requirements, designing systems, creating ERDs, defining APIs, architecting microservices, or integrating AI platforms.
 ---
 
 # System Analyst Expert - Super Senior Level

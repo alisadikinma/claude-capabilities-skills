@@ -1,10 +1,7 @@
 ---
 name: web-architect-pro
 description: |
-  Next.js React Vue.js Laravel FastAPI Django web application development full-stack. Frontend backend API database PostgreSQL MongoDB Express NestJS web architecture.
-  Use when: building web app, creating Next.js project, React application, Vue project, Laravel API, FastAPI backend, Django REST, full-stack development, SSR SSG SPA,
-  API design, REST GraphQL, database schema, Prisma TypeORM, authentication JWT, web performance, SEO optimization, responsive web, Tailwind CSS, web deployment,
-  Vercel Netlify hosting, web testing, CI/CD pipeline, web best practices.
+  Builds full-stack web applications using Next.js, React, Vue.js, FastAPI, Django, Laravel, and NestJS. Implements frontend (SSR, SSG, Tailwind) and backend APIs (REST, GraphQL, WebSocket) with PostgreSQL, MongoDB, and Prisma. Configures authentication (JWT, OAuth), security, and performance optimization. Use when building web apps, creating Next.js projects, designing APIs, implementing authentication, or optimizing web performance.
 ---
 
 # Web Architect Pro

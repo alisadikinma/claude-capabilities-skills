@@ -1,7 +1,7 @@
 ---
 name: ml-systems-pro
 description: |
-  Production ML systems multi-modal CLIP similarity search MLOps feature store monitoring. Image-text fusion recommendation engine vector database hybrid search A/B testing. Use when: building ML system, similarity search engine, recommendation system, multi-modal AI, CLIP model, image search, cross-modal retrieval, embedding system, vector similarity, hybrid search, semantic search, MLOps pipeline, feature engineering, feature store, model serving, inference optimization, A/B testing, drift detection, model monitoring, production ML, scalable ML, real-time inference, batch processing, ML infrastructure.
+  Builds production ML systems with multi-modal models (CLIP, BLIP), similarity search engines, and MLOps pipelines. Implements image-text retrieval, hybrid search, and recommendation systems using vector databases (pgvector, Pinecone, ChromaDB). Creates feature stores, model monitoring with drift detection, and A/B testing frameworks. Use when building similarity search, creating recommendation systems, implementing multi-modal AI, setting up vector databases, or monitoring ML in production.
 ---
 
 # ML Systems Pro

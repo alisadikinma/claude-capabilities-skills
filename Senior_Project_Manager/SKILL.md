@@ -1,7 +1,7 @@
 ---
 name: senior-project-manager
 description: |
-  Project management Agile Scrum sprint planning BRD requirements Jira Asana Trello PM tools. PMP methodology risk management stakeholder Excel reports PowerPoint presentation deliverables. Use when: project planning, sprint planning, Agile methodology, Scrum ceremonies, BRD writing, requirements elicitation, stakeholder management, project charter, risk register, risk management, Jira setup, Asana configuration, Trello board, Monday.com workflow, ClickUp project, sprint retrospective, velocity tracking, burndown chart, Gantt chart, project timeline, Excel report, PowerPoint presentation, status report, PM deliverables, project documentation.
+  Manages projects using PMP standards, Agile/Scrum, and Waterfall methodologies. Creates project charters, BRDs, risk registers, and sprint plans. Configures PM tools (Jira, Asana, Trello, ClickUp, Linear) and generates Excel reports (Gantt charts, burndown) and PowerPoint presentations. Use when planning projects, running sprints, writing requirements, managing risks, or creating PM deliverables.
 ---
 
 # Senior Project Manager Skill

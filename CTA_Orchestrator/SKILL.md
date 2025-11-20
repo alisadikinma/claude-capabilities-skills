@@ -1,7 +1,7 @@
 ---
 name: cta-orchestrator
 description: |
-  Multi-domain architecture coordination tech stack evaluation system design orchestration. Complex project planning specialist delegation web mobile AI infrastructure integration. Use when: designing complex system, multi-domain project, architecture decision, tech stack evaluation, coordinating specialists, system integration, web and mobile, mobile and backend, AI and web, microservices architecture, distributed system, enterprise platform, full-stack project, technical feasibility, architecture patterns, technology selection, system scalability, integration strategy, multi-tier architecture, cloud-native design, modern architecture.
+  Coordinates multi-domain projects requiring web, mobile, AI, and infrastructure integration. Analyzes system requirements, evaluates tech stacks, and delegates to specialist skills. Defines architecture for distributed systems, API contracts, and integration patterns across technical layers. Use when designing complex systems with multiple domains, evaluating tech stacks, coordinating specialists, or planning full-stack platforms.
 ---
 
 # CTA Orchestrator - Technical Architecture Coordinator

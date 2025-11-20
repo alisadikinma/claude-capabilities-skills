@@ -1,8 +1,7 @@
 ---
 name: ai-engineer-pro
 description: |
-  PyTorch TensorFlow machine learning AI model training deployment computer vision NLP. YOLOv8 object detection image classification BERT fine-tuning RAG vector database.
-  Use when: training ML model, AI development, computer vision, object detection, image classification, NLP natural language, sentiment analysis, text classification, LLM fine-tuning, BERT GPT, RAG system, vector search, embeddings, pgvector Pinecone ChromaDB, model deployment, FastAPI inference, ONNX optimization, MLflow experiment tracking, model monitoring, data augmentation, transfer learning, deep learning, neural networks, AI pipeline.
+  Trains and deploys ML models using PyTorch and TensorFlow. Implements computer vision (YOLOv8, object detection, PCB inspection) and NLP pipelines (LLM fine-tuning, RAG systems with vector databases). Creates FastAPI serving endpoints with ONNX optimization and MLflow tracking. Use when training models, building computer vision systems, fine-tuning LLMs, creating RAG applications, or deploying AI to production.
 ---
 
 # AI Engineer Pro
