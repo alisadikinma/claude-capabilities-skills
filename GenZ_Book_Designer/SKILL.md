@@ -239,6 +239,130 @@ Style: Duotone illustration with hand-drawn accents
 Inspiration: Similar to "Atomic Habits" visual breakdowns
 ```
 
+## Helper Scripts
+
+**Automate repetitive tasks with pre-built Python scripts in `scripts/` folder:**
+
+### 1. Title Scorer (`title-scorer.py`)
+**Score titles for viral potential (0-100 scale)**
+
+Evaluates 6 dimensions:
+- Length optimization (40-80 chars ideal)
+- Power words (urgency, rebellion, achievement)
+- Emotional triggers (curiosity, FOMO, challenge)
+- Numbers/specificity
+- Gen Z language patterns
+- Searchability
+
+**Usage:**
+```bash
+# Score single title
+python scripts/title-scorer.py "Your Book Title Here"
+
+# Score multiple titles from file
+python scripts/title-scorer.py --batch titles.txt
+```
+
+**Output:**
+```
+📊 TOTAL SCORE: 87/100
+🎯 GRADE: A
+💬 🔥 Viral potential - Strong title!
+
+DETAILED BREAKDOWN:
+Length (51 chars)          : 20/20
+Power Words                : 20/25
+Emotional Triggers         : 15/20
+...
+
+💡 RECOMMENDATIONS:
+1. Add more power words (speedrun, hack, secret)
+2. Include numbers for specificity: '$10K', '90 Days'
+```
+
+### 2. Pit Stop Generator (`pit-stop-generator.py`)
+**Generate ready-to-use pit stops based on theme and type**
+
+Supports 5 types:
+- **Challenge** - Real-world tasks (DM challenges, screenshot hunts)
+- **Quiz** - Multiple choice tests
+- **Game** - Swipe games, simulators, builders
+- **Reflection** - Self-assessment prompts
+- **Checkpoint** - Progress milestones
+
+**Usage:**
+```bash
+# Generate single pit stop
+python scripts/pit-stop-generator.py --theme marketing --type challenge
+
+# Generate full chapter set (4 pit stops)
+python scripts/pit-stop-generator.py --chapter --theme finance
+
+# Random inspiration
+python scripts/pit-stop-generator.py --random
+```
+
+**Output:**
+```
+PIT STOP: The 5-Minute Marketing Sprint
+Type: Challenge | Time: 5-10 min
+
+✅ TASKS:
+1. Open Instagram and find 3 examples of viral hooks
+2. Screenshot best and worst examples
+3. Write why each works/fails
+4. Tag learnings in margins
+
+🔓 UNLOCK: Marketing Framework Template
+```
+
+### 3. Chapter Validator (`chapter-validator.py`)
+**Validate manuscript structure before publishing**
+
+Checks:
+- Sub-chapter word counts (800-1500 optimal)
+- Pit stop placement (every sub-chapter)
+- Hook presence (engaging openings)
+- Chapter naming (no boring patterns)
+- Flow/pacing
+
+**Usage:**
+```bash
+# Validate full manuscript
+python scripts/chapter-validator.py manuscript.txt
+
+# Validate specific chapter
+python scripts/chapter-validator.py --chapter "Chapter 1" manuscript.txt
+
+# Export to JSON
+python scripts/chapter-validator.py --json results.json manuscript.txt
+```
+
+**Output:**
+```
+MANUSCRIPT VALIDATION RESULTS
+Chapters analyzed: 8
+Status: 6/8 PASSED
+Issues: 4 critical
+
+✅ Why Your Parents' Money Advice is Broke
+   Sub-chapters: 4 | Pit stops: 4
+   Avg words/sub: 1,050
+
+❌ The $10K Framework
+   ❌ CRITICAL ISSUES:
+   • Sub-chapter 3 missing pit stop
+   • Chapter name: Boring pattern detected
+```
+
+**All scripts:**
+- Use Python 3.7+ (no external dependencies)
+- Work standalone (no Claude needed)
+- Output copy-paste ready content
+- Cross-platform compatible
+
+See `scripts/README.md` for detailed documentation.
+
 ## File References
 
 **When you need deeper guidance, Claude reads these files:**
