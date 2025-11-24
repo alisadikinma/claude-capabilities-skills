@@ -1,0 +1,226 @@
+{
+  "name": "Email Automation Template",
+  "nodes": [
+    {
+      "id": "schedule_trigger",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "google_sheets",
+      "name": "Get Contact List",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [450, 300],
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "list",
+          "cachedResultName": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Sheet1",
+          "mode": "list",
+          "cachedResultName": ""
+        },
+        "options": {
+          "range": "A:D"
+        }
+      },
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": ""
+        }
+      }
+    },
+    {
+      "id": "filter_contacts",
+      "name": "Filter Active Contacts",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2,
+      "position": [650, 300],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": ""
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "active",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "isNotEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "gmail_send",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [850, 300],
+      "parameters": {
+        "operation": "send",
+        "emailType": "text",
+        "toList": "={{ $json.email }}",
+        "subject": "Daily Update - {{ $now.toFormat('yyyy-MM-dd') }}",
+        "message": "Hi {{ $json.name }},\n\nThis is your daily update.\n\nBest regards,\nYour Team",
+        "options": {
+          "ccList": "",
+          "bccList": "",
+          "replyTo": ""
+        }
+      },
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "",
+          "name": ""
+        }
+      }
+    },
+    {
+      "id": "sheets_update",
+      "name": "Update Sent Status",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1050, 300],
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "list",
+          "cachedResultName": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Sheet1",
+          "mode": "list",
+          "cachedResultName": ""
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "last_sent": "={{ $now.toISO() }}"
+          }
+        },
+        "options": {
+          "dataStartRow": 2
+        }
+      },
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": ""
+        }
+      }
+    }
+  ],
+  "connections": {
+    "schedule_trigger": {
+      "main": [
+        [
+          {
+            "node": "google_sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "google_sheets": {
+      "main": [
+        [
+          {
+            "node": "filter_contacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "filter_contacts": {
+      "main": [
+        [
+          {
+            "node": "gmail_send",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "gmail_send": {
+      "main": [
+        [
+          {
+            "node": "sheets_update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "none"
+  },
+  "meta": {
+    "description": "Automated email campaign workflow that reads contacts from Google Sheets, filters active contacts, sends personalized emails via Gmail, and updates send status.",
+    "requirements": [
+      "Google Sheets OAuth2 credentials",
+      "Gmail OAuth2 credentials",
+      "Google Sheet with columns: name, email, status, last_sent"
+    ],
+    "setup": [
+      "1. Configure Google Sheets credentials",
+      "2. Select your spreadsheet in 'Get Contact List' node",
+      "3. Configure Gmail credentials",
+      "4. Customize email subject and message",
+      "5. Test with manual trigger before activating schedule"
+    ],
+    "sheet_structure": {
+      "columns": ["name", "email", "status", "last_sent"],
+      "example": {
+        "name": "John Doe",
+        "email": "john@example.com",
+        "status": "active",
+        "last_sent": "2024-01-15T10:00:00Z"
+      }
+    }
+  }
+}
