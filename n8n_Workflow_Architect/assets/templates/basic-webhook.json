@@ -1,0 +1,74 @@
+{
+  "name": "Basic Webhook Template",
+  "nodes": [
+    {
+      "id": "webhook_trigger",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "webhook-example",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "webhook-endpoint",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "code_process",
+      "name": "Process Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Process incoming webhook data\nconst items = $input.all();\n\nreturn items.map(item => ({\n  json: {\n    received_at: new Date().toISOString(),\n    processed: true,\n    original_data: item.json,\n    // Add your processing logic here\n    result: {\n      message: 'Data processed successfully',\n      data: item.json\n    }\n  }\n}));"
+      }
+    },
+    {
+      "id": "response_webhook",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [650, 300],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json.result }}",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "webhook_trigger": {
+      "main": [
+        [
+          {
+            "node": "code_process",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_process": {
+      "main": [
+        [
+          {
+            "node": "response_webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "description": "Basic webhook template with data processing and response. Perfect starting point for webhook-based integrations.",
+    "usage": "1. Activate workflow\n2. Send POST request to webhook URL\n3. Data is processed and response returned\n4. Customize code node for your use case"
+  }
+}

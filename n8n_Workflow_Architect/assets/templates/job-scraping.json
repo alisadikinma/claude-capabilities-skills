@@ -1,0 +1,351 @@
+{
+  "name": "Job Scraping & Automation Template",
+  "nodes": [
+    {
+      "id": "schedule_trigger",
+      "name": "Daily Check",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        },
+        "triggerTimes": {
+          "item": [
+            {
+              "hour": 8,
+              "minute": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "http_scrape",
+      "name": "Scrape Job Boards",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [450, 300],
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.example-jobs.com/search",
+        "authentication": "none",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "keywords",
+              "value": "remote developer"
+            },
+            {
+              "name": "location",
+              "value": "worldwide"
+            },
+            {
+              "name": "posted",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "code_parse",
+      "name": "Parse Jobs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Parse job listings from API response\nconst response = $input.first().json;\n\n// Assuming API returns array of jobs\nconst jobs = response.results || response.jobs || [];\n\nreturn jobs.map(job => ({\n  json: {\n    title: job.title,\n    company: job.company?.name || job.company,\n    location: job.location,\n    url: job.url || job.apply_url,\n    description: job.description,\n    salary: job.salary_range,\n    posted_date: job.posted_date || job.created_at,\n    job_type: job.job_type || 'Full-time',\n    remote: job.remote || false,\n    // Add matching score (customize logic)\n    match_score: calculateMatch(job),\n    scraped_at: new Date().toISOString()\n  }\n}));\n\nfunction calculateMatch(job) {\n  let score = 0;\n  const title = (job.title || '').toLowerCase();\n  const description = (job.description || '').toLowerCase();\n  \n  // Skills matching (customize)\n  const requiredSkills = ['javascript', 'react', 'node.js', 'python'];\n  requiredSkills.forEach(skill => {\n    if (title.includes(skill) || description.includes(skill)) {\n      score += 1;\n    }\n  });\n  \n  // Remote preference\n  if (job.remote) score += 2;\n  \n  // Normalize to 1-5 scale\n  return Math.min(5, Math.max(1, Math.ceil(score / 2)));\n}"
+      }
+    },
+    {
+      "id": "filter_high_match",
+      "name": "Filter High Matches",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2,
+      "position": [850, 300],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": ""
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.match_score }}",
+              "rightValue": 3,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "sheets_append",
+      "name": "Save to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1050, 250],
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "list",
+          "cachedResultName": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Jobs",
+          "mode": "list",
+          "cachedResultName": ""
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {}
+        },
+        "options": {}
+      },
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": ""
+        }
+      }
+    },
+    {
+      "id": "openai_summary",
+      "name": "Generate Summary",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [1050, 350],
+      "parameters": {
+        "resource": "chat",
+        "operation": "message",
+        "modelId": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a career advisor. Analyze job listings and provide concise summaries."
+            },
+            {
+              "role": "user",
+              "content": "Found {{ $input.all().length }} high-match jobs:\n\n{{ $input.all().map((item, i) => `${i+1}. ${item.json.title} at ${item.json.company} (Match: ${item.json.match_score}/5)`).join('\\n') }}\n\nProvide:\n1. Quick summary of opportunities\n2. Top 3 recommendations with reasons\n3. Any patterns or insights"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "credentials": {
+        "openAiApi": {
+          "id": "",
+          "name": ""
+        }
+      }
+    },
+    {
+      "id": "gmail_notify",
+      "name": "Send Email Alert",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [1250, 300],
+      "parameters": {
+        "operation": "send",
+        "emailType": "html",
+        "toList": "your-email@example.com",
+        "subject": "🎯 {{ $('Filter High Matches').all().length }} New Job Matches - {{ $now.toFormat('MMM dd') }}",
+        "message": "<h2>Daily Job Report</h2>\n\n<h3>AI Summary</h3>\n<p>{{ $('Generate Summary').item.json.message.content }}</p>\n\n<h3>Top Matches</h3>\n<ul>\n{{ $('Filter High Matches').all().slice(0, 5).map(item => `\n  <li>\n    <strong>${item.json.title}</strong> at ${item.json.company}<br>\n    Match Score: ${'⭐'.repeat(item.json.match_score)}<br>\n    Location: ${item.json.location}<br>\n    <a href=\"${item.json.url}\">Apply Now</a>\n  </li>\n`).join('') }}\n</ul>\n\n<p><small>Scraped at: {{ $now.toISO() }}</small></p>",
+        "options": {}
+      },
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "",
+          "name": ""
+        }
+      }
+    }
+  ],
+  "connections": {
+    "schedule_trigger": {
+      "main": [
+        [
+          {
+            "node": "http_scrape",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "http_scrape": {
+      "main": [
+        [
+          {
+            "node": "code_parse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_parse": {
+      "main": [
+        [
+          {
+            "node": "filter_high_match",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "filter_high_match": {
+      "main": [
+        [
+          {
+            "node": "sheets_append",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "openai_summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "openai_summary": {
+      "main": [
+        [
+          {
+            "node": "gmail_notify",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all"
+  },
+  "meta": {
+    "description": "Automated job hunting workflow that scrapes job boards daily, filters by match score, saves to Google Sheets, generates AI summary, and sends email alerts. Perfect for passive job searching.",
+    "requirements": [
+      "Job board API or scraping endpoint",
+      "Google Sheets OAuth2 credentials",
+      "OpenAI API credentials",
+      "Gmail OAuth2 credentials"
+    ],
+    "features": [
+      "Daily automated job scraping",
+      "Smart matching algorithm (customize in code)",
+      "Google Sheets tracking",
+      "AI-powered job analysis and recommendations",
+      "HTML email notifications with top matches"
+    ],
+    "customization": {
+      "scraping": [
+        "Replace HTTP node with Apify actors for LinkedIn/Indeed/Glassdoor",
+        "Add multiple job boards in parallel",
+        "Implement pagination for larger result sets"
+      ],
+      "matching": [
+        "Update requiredSkills array in code",
+        "Adjust match_score calculation logic",
+        "Add salary range filtering",
+        "Include company blacklist/whitelist"
+      ],
+      "notifications": [
+        "Change email recipient",
+        "Add Slack/Telegram notifications",
+        "Customize HTML template",
+        "Set minimum match threshold"
+      ]
+    },
+    "sheets_structure": {
+      "columns": [
+        "title",
+        "company",
+        "location",
+        "url",
+        "salary",
+        "job_type",
+        "remote",
+        "match_score",
+        "posted_date",
+        "scraped_at"
+      ],
+      "example": {
+        "title": "Senior React Developer",
+        "company": "TechCorp",
+        "location": "Remote",
+        "url": "https://jobs.example.com/123",
+        "salary": "$120k-150k",
+        "job_type": "Full-time",
+        "remote": true,
+        "match_score": 5,
+        "posted_date": "2024-01-15",
+        "scraped_at": "2024-01-16T08:00:00Z"
+      }
+    },
+    "alternatives": {
+      "scraping": [
+        "Apify actors (LinkedIn, Indeed, Glassdoor) - $0.10/run",
+        "Bright Data - enterprise scraping",
+        "Custom Puppeteer/Playwright scripts"
+      ],
+      "storage": [
+        "Notion database",
+        "Airtable",
+        "MongoDB",
+        "PostgreSQL"
+      ],
+      "ai": [
+        "Google Gemini (free tier available)",
+        "Anthropic Claude",
+        "Local LLMs via Ollama"
+      ]
+    },
+    "cost_estimate": {
+      "daily": "$0.10-0.30",
+      "monthly": "$3-9",
+      "breakdown": {
+        "scraping": "$0.10 (Apify)",
+        "ai_summary": "$0.01 (GPT-4o-mini)",
+        "sheets": "Free (Google)",
+        "gmail": "Free (Gmail)"
+      }
+    },
+    "legal_notes": [
+      "Most job boards prohibit scraping in ToS",
+      "Use official APIs when available (Adzuna, RapidAPI)",
+      "LinkedIn v. hiQ: Public data scraping may be legal but ToS violations risk bans",
+      "For personal use only, not commercial",
+      "Respect robots.txt and rate limits"
+    ]
+  }
+}

@@ -1,0 +1,262 @@
+{
+  "name": "AI Content Generation Template",
+  "nodes": [
+    {
+      "id": "manual_trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {}
+    },
+    {
+      "id": "set_topic",
+      "name": "Set Topic",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [450, 300],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "topic",
+              "name": "topic",
+              "value": "AI and automation",
+              "type": "string"
+            },
+            {
+              "id": "tone",
+              "name": "tone",
+              "value": "professional",
+              "type": "string"
+            },
+            {
+              "id": "word_count",
+              "name": "word_count",
+              "value": "500",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "openai_outline",
+      "name": "Generate Outline",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [650, 300],
+      "parameters": {
+        "resource": "chat",
+        "operation": "message",
+        "modelId": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a professional content strategist. Create detailed article outlines."
+            },
+            {
+              "role": "user",
+              "content": "Create a detailed outline for an article about: {{ $json.topic }}\nTone: {{ $json.tone }}\nTarget length: {{ $json.word_count }} words\n\nInclude:\n- Compelling title\n- 3-5 main sections with subsections\n- Key points for each section"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "credentials": {
+        "openAiApi": {
+          "id": "",
+          "name": ""
+        }
+      }
+    },
+    {
+      "id": "openai_content",
+      "name": "Generate Content",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [850, 300],
+      "parameters": {
+        "resource": "chat",
+        "operation": "message",
+        "modelId": "gpt-4o",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a professional content writer. Write engaging, well-structured articles based on outlines."
+            },
+            {
+              "role": "user",
+              "content": "Based on this outline:\n{{ $('Generate Outline').item.json.message.content }}\n\nWrite a complete article about: {{ $('Set Topic').item.json.topic }}\n\nRequirements:\n- Tone: {{ $('Set Topic').item.json.tone }}\n- Length: approximately {{ $('Set Topic').item.json.word_count }} words\n- Include introduction and conclusion\n- Use subheadings\n- Make it engaging and informative"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.8,
+          "maxTokens": 2000
+        }
+      },
+      "credentials": {
+        "openAiApi": {
+          "id": "",
+          "name": ""
+        }
+      }
+    },
+    {
+      "id": "openai_seo",
+      "name": "Generate SEO Metadata",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [1050, 300],
+      "parameters": {
+        "resource": "chat",
+        "operation": "message",
+        "modelId": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are an SEO expert. Generate optimized metadata for articles."
+            },
+            {
+              "role": "user",
+              "content": "Based on this article:\n{{ $('Generate Content').item.json.message.content.substring(0, 500) }}...\n\nGenerate:\n1. SEO title (50-60 characters)\n2. Meta description (150-160 characters)\n3. 5 relevant keywords\n4. URL slug\n\nFormat as JSON:\n{\n  \"seo_title\": \"\",\n  \"meta_description\": \"\",\n  \"keywords\": [],\n  \"slug\": \"\"\n}"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.5
+        }
+      },
+      "credentials": {
+        "openAiApi": {
+          "id": "",
+          "name": ""
+        }
+      }
+    },
+    {
+      "id": "code_format",
+      "name": "Format Output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1250, 300],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const topic = $('Set Topic').item.json;\nconst outline = $('Generate Outline').item.json.message.content;\nconst content = $('Generate Content').item.json.message.content;\nconst seoRaw = $('Generate SEO Metadata').item.json.message.content;\n\n// Parse SEO metadata\nlet seo = {};\ntry {\n  // Extract JSON from response\n  const jsonMatch = seoRaw.match(/\\{[\\s\\S]*\\}/);\n  if (jsonMatch) {\n    seo = JSON.parse(jsonMatch[0]);\n  }\n} catch (e) {\n  console.error('Failed to parse SEO metadata:', e);\n  seo = {\n    seo_title: topic.topic,\n    meta_description: content.substring(0, 160),\n    keywords: [],\n    slug: topic.topic.toLowerCase().replace(/\\s+/g, '-')\n  };\n}\n\nreturn [{\n  json: {\n    title: seo.seo_title || topic.topic,\n    slug: seo.slug,\n    content: content,\n    excerpt: content.substring(0, 200) + '...',\n    meta: {\n      description: seo.meta_description,\n      keywords: seo.keywords\n    },\n    outline: outline,\n    generated_at: new Date().toISOString(),\n    word_count: content.split(/\\s+/).length,\n    config: {\n      topic: topic.topic,\n      tone: topic.tone,\n      target_word_count: topic.word_count\n    }\n  }\n}]);"
+      }
+    }
+  ],
+  "connections": {
+    "manual_trigger": {
+      "main": [
+        [
+          {
+            "node": "set_topic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set_topic": {
+      "main": [
+        [
+          {
+            "node": "openai_outline",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "openai_outline": {
+      "main": [
+        [
+          {
+            "node": "openai_content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "openai_content": {
+      "main": [
+        [
+          {
+            "node": "openai_seo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "openai_seo": {
+      "main": [
+        [
+          {
+            "node": "code_format",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "description": "AI-powered content generation workflow using OpenAI GPT-4o. Generates outline, writes content, creates SEO metadata, and formats output. Perfect for blog automation, content marketing, and social media content.",
+    "requirements": [
+      "OpenAI API credentials (supports GPT-4o and GPT-4o-mini)"
+    ],
+    "features": [
+      "Multi-stage content generation (outline → content → SEO)",
+      "Configurable topic, tone, and word count",
+      "Automatic SEO metadata generation",
+      "Clean JSON output ready for publishing",
+      "Cost-optimized (uses gpt-4o-mini for outline and SEO)"
+    ],
+    "cost_estimate": {
+      "per_article": "$0.05-0.15",
+      "models_used": [
+        "gpt-4o-mini: $0.15/1M input, $0.60/1M output",
+        "gpt-4o: $2.50/1M input, $10.00/1M output"
+      ]
+    },
+    "customization": [
+      "Change 'Set Topic' values for different content",
+      "Adjust temperature for creativity (0.0-1.0)",
+      "Modify prompts for different content styles",
+      "Add image generation node (DALL-E)",
+      "Add publishing nodes (WordPress, Ghost, Medium)"
+    ],
+    "output_schema": {
+      "title": "SEO-optimized title",
+      "slug": "url-friendly-slug",
+      "content": "Full article content",
+      "excerpt": "First 200 characters",
+      "meta": {
+        "description": "SEO meta description",
+        "keywords": ["keyword1", "keyword2"]
+      },
+      "outline": "Original outline",
+      "generated_at": "ISO timestamp",
+      "word_count": "Actual word count",
+      "config": {
+        "topic": "Original topic",
+        "tone": "Content tone",
+        "target_word_count": "Target length"
+      }
+    }
+  }
+}
